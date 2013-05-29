@@ -20,13 +20,18 @@ $(function () {
     var geometry = new THREE.TorusGeometry(3,0.3,64, 64, THREE.PI);
 
 
-    var material = new THREE.MeshBasicMaterial({
+    var material = new THREE.MeshPhongMaterial({
 	color: 0x00ff00
     });
     var torus = new THREE.Mesh(geometry, material);
     scene.add(torus);
     camera.position.z = 5;
 
+    // add lights
+    var light = new THREE.PointLight(0xffffff, 1, 0);
+    light.position.set(50, 50, 50);
+    scene.add(light);
+    
     function render() {
 	requestAnimationFrame(render);
 	renderer.render(scene, camera);
