@@ -5,11 +5,16 @@ $(function () {
     var params = {
 	xspeed: 0.0
 	, yspeed: 0.0
+	, xscale: 1
+	, yscale: 1
+	, zscale: 1
     };
 
     gui.add(params, 'xspeed').min(-0.4).max(0.4).step(0.01);
     gui.add(params, 'yspeed').min(-0.4).max(0.4).step(0.01);
-
+    gui.add(params, 'xscale').min(0.1).max(3).step(0.01);
+    gui.add(params, 'yscale').min(0.1).max(3).step(0.01);
+    gui.add(params, 'zscale').min(0.1).max(3).step(0.01);
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     var renderer = new THREE.WebGLRenderer();
@@ -40,6 +45,9 @@ $(function () {
 	torus.rotation.x += params.xspeed;
 	torus.rotation.y += params.yspeed;
 
+	torus.scale.x = params.xscale;
+	torus.scale.y = params.yscale;
+	torus.scale.z = params.zscale;
     }
     render();
     
