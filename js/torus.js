@@ -9,7 +9,7 @@ $(function () {
 	, yscale: 1
 	, zscale: 1
     };
-
+    
     gui.add(params, 'xspeed').min(-0.4).max(0.4).step(0.01);
     gui.add(params, 'yspeed').min(-0.4).max(0.4).step(0.01);
     gui.add(params, 'xscale').min(0.1).max(3).step(0.01);
@@ -20,18 +20,18 @@ $(function () {
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
-
+    
     //add the torus
     var geometry = new THREE.TorusGeometry(3,0.3,64, 64, THREE.PI);
-
-
+    
+    
     var material = new THREE.MeshPhongMaterial({
 	color: 0x00ff00
     });
     var torus = new THREE.Mesh(geometry, material);
     scene.add(torus);
     camera.position.z = 5;
-
+    
     // add lights
     var light = new THREE.PointLight(0xffffff, 1, 0);
     light.position.set(50, 50, 50);
@@ -40,17 +40,17 @@ $(function () {
     function render() {
 	requestAnimationFrame(render);
 	renderer.render(scene, camera);
-
+	
 	//torus.rotation.y += 0.1;
 	torus.rotation.x += params.xspeed;
 	torus.rotation.y += params.yspeed;
-
+	
 	torus.scale.x = params.xscale;
 	torus.scale.y = params.yscale;
 	torus.scale.z = params.zscale;
     }
     render();
     
-
-
+    
+    
 });
